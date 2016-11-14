@@ -5,6 +5,7 @@
   "author": "Andres Mendez <andrex873@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.16.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
@@ -13,10 +14,10 @@
     "babel-loader": "^6.2.7",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
-
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --host 0.0.0.0"
   }
