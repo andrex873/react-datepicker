@@ -9,11 +9,11 @@ class Datepicker extends React.Component {
     }
 
     static defaultProps = {
-        value: '1/12/2016'
+        value: '1/11/2016'
     }
 
     state = {
-        date: moment(this.props.value, "MM/DD/YYYY")
+        date: moment(this.props.value, "DD/MM/YYYY")
     };
 
     render () {
@@ -36,15 +36,37 @@ class Datepicker extends React.Component {
     getInputProps () {
         return {
             name: 'datepicker',
-            value: this.props.value,
+            value: this.state.date.format('DD/MM/YYYY'),
             onChange: function () {}
         };
     }
 
     getCalendarProps () {
         return {
-            date: this.state.date
+            date: this.state.date,
+            isSelected: true,
+            onDateSelected: this.handleOnDateSelected.bind(this),
+            onNextMonth: this.handleOnNextMonth.bind(this),
+            onPreviousMonth: this.handleOnPreviousMonth.bind(this)
         };
+    }
+
+    handleOnDateSelected (date) {
+        this.setState({
+            date: date
+        });
+    }
+
+    handleOnNextMonth (date) {
+        this.setState({
+            date: date
+        });
+    }
+
+    handleOnPreviousMonth (date) {
+        this.setState({
+            date: date
+        });
     }
 }
 
