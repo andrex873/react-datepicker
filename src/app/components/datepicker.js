@@ -1,8 +1,13 @@
-import React from 'react';
 import Calendar from './calendar'
 import moment from 'moment';
+import React from 'react';
 
 class Datepicker extends React.Component {
+
+    constructor (props) {
+        moment.locale('es');
+        super(props);
+    }
 
     static propTypes = {
         value: React.PropTypes.string
@@ -13,8 +18,9 @@ class Datepicker extends React.Component {
     }
 
     state = {
-        date: moment(this.props.value, "DD/MM/YYYY")
-    };
+        calendarDate: this.getCalendarDate(),
+        inputDate: this.getInputDate()
+    }
 
     render () {
         return (
@@ -26,6 +32,15 @@ class Datepicker extends React.Component {
         );
     }
 
+    getInputDate () {
+        // TODO validate this string value
+        return moment(this.props.value, "DD/MM/YYYY");
+    }
+
+    getCalendarDate () {
+        // TODO if inputDate is valid then return it otherwise return the current date
+        return moment(this.props.value, "DD/MM/YYYY");
+    }
 
     getContainerProps () {
         return {
@@ -36,37 +51,41 @@ class Datepicker extends React.Component {
     getInputProps () {
         return {
             name: 'datepicker',
-            value: this.state.date.format('DD/MM/YYYY'),
-            onChange: function () {}
+            onChange: this.handleOnInputChange,
+            value: this.state.inputDate.format('DD/MM/YYYY')
         };
     }
 
     getCalendarProps () {
         return {
-            date: this.state.date,
-            isSelected: true,
-            onDateSelected: this.handleOnDateSelected.bind(this),
-            onNextMonth: this.handleOnNextMonth.bind(this),
-            onPreviousMonth: this.handleOnPreviousMonth.bind(this)
+            date: this.state.calendarDate,
+            onDateSelected: this.handleOnDateSelected,
+            onNextMonth: this.handleOnNextMonth,
+            onPreviousMonth: this.handleOnPreviousMonth
         };
     }
 
-    handleOnDateSelected (date) {
+    handleOnDateSelected = (date) => {
         this.setState({
-            date: date
+            calendarDate: date,
+            inputDate: date
         });
     }
 
-    handleOnNextMonth (date) {
+    handleOnNextMonth = (date) => {
         this.setState({
-            date: date
+            calendarDate: date
         });
     }
 
-    handleOnPreviousMonth (date) {
+    handleOnPreviousMonth = (date) => {
         this.setState({
-            date: date
+            calendarDate: date
         });
+    }
+
+    handleOnInputChange = () => {
+        // TODO update the input field
     }
 }
 

@@ -1,5 +1,4 @@
 import config from './config';
-import moment from 'moment';
 import Month from './month';
 import React from 'react';
 
@@ -13,16 +12,17 @@ class Calendar extends React.Component {
     }
 
     static defaultProps = {
-        isSelected: false
     }
 
     state = {
         month: new Month(this.props.date.month(), this.props.date.year())
     }
 
-    /*componentWillReceiveProps (newProps) {
-        props.date = newProps.date;
-    }*/
+    componentWillReceiveProps (newProps) {
+        this.setState({
+            month: new Month(newProps.date.month(), newProps.date.year())
+        });
+    }
 
     render () {
         return (
@@ -32,23 +32,28 @@ class Calendar extends React.Component {
                 </div>
                 <div className="calendar--month">
                     <span>
-                        <button onClick={this.setPrevMonth.bind(this)}>prev</button>
+                        <button onClick={this.setPrevMonth}>prev</button>
                     </span>
-                    {this.props.date.format('MMMM')}
+                    <span className="calendar--month-text">
+                        {this.props.date.format('MMMM')}
+                    </span>
                     <span>
-                        <button onClick={this.setNextMonth.bind(this)}>next</button>
+                        <button onClick={this.setNextMonth}>next</button>
                     </span>
                 </div>
+                <div className="calendar--day-name">
+                    {this.props.date.format('dddd, DD')}
+                </div>
                 <div className="calendar--days">
-                    {config.DAYS_OF_WEECK.map(this.renderDaysNames, this)}
+                    {config.DAYS_OF_WEECK.map(this.renderDaysNames)}
                     {this.renderEmptySpace()}
-                    {this.state.month.getDays().map(this.renderMonthDays, this)}
+                    {this.state.month.getDays().map(this.renderMonthDays)}
                 </div>
             </div>
         );
     }
 
-    renderDaysNames (value, index) {
+    renderDaysNames = (value, index) => {
         return <div className="calendar--day" key={index}>{value}</div>;
     }
 
@@ -66,22 +71,22 @@ class Calendar extends React.Component {
         return content;
     }
 
-    renderMonthDays (date, index) {
+    renderMonthDays = (date, index) => {
         return (
-            <div key={index} className="calendar--day" onClick={this.props.onDateSelected.bind(null, date)} >
+            <div key={index} className="calendar--day" onClick={() => this.props.onDateSelected(date)}>
                 {date.format('DD')}
             </div>
         );
     }
 
-    setPrevMonth () {
-        let prevDate = this.state.month.prevMonth();
-        this.props.onPreviousMonth(prevDate);
+    setPrevMonth = () => {
+        let prevMonth= this.state.month.prevMonth();
+        this.props.onPreviousMonth(prevMonth);
     }
 
-    setNextMonth () {
-        let nextDate = this.state.month.nextMonth();
-        this.props.onPreviousMonth(nextDate);
+    setNextMonth = () => {
+        let nextMonth = this.state.month.nextMonth();
+        this.props.onNextMonth(nextMonth);
     }
 
 }

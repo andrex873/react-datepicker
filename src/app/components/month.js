@@ -17,11 +17,11 @@ export default class Month {
     }
 
     prevMonth () {
-        return this.startDate.subtract(1, 'month');
+        return this.startDate.subtract(1, 'months');
     }
 
     nextMonth () {
-        return this.startDate.add(1, 'month');
+        return this.startDate.add(1, 'months');
     }
 }
 

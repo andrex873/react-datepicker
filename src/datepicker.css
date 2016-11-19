@@ -1,64 +1,77 @@
 
 .datepicker-container {
-
 }
 
 .calendar {
-
-    -webkit-box-shadow: 6px 6px 5px 0px rgba(168,168,168,0.4);
-    -moz-box-shadow: 6px 6px 5px 0px rgba(168,168,168,0.4);
-    box-shadow: 6px 6px 5px 0px rgba(168,168,168,0.4);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.7);
+    -moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.7);
+    box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.7);
     color: #fff;
+    width: 300px;
 }
 .calendar .calendar--year {
     background-color: #006064;
+    font-size: 20px;
+    font-weight: bold;
     padding: 15px 0;
     text-align: center;
-    font-weight: bold;
-    font-size: 20px;
 }
 .calendar .calendar--month {
     background-color: #006064;
-    padding: 15px 0;
     font-size: 28px;
-    text-align: center;
     font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.calendar--day-name{
+    background-color: #006064;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
 }
 .calendar .calendar--days {
-    padding: 0 10px 10px;
     color: #000;
+    padding: 0 10px 10px;
 }
 
 .calendar .calendar--day {
+    cursor: pointer;
     display: inline-block;
     height: 25px;
     line-height: 25px;
     text-align: center;
     width: 14.2%;
-    cursor: pointer;
 }
 
 .calendar .calendar--day-name {
 }
 
 .calendar .calendar--days .empty-0 {
-    width: 0%;
+    margin-left: 0%;
 }
 .calendar .calendar--days .empty-1 {
-    width: 14.2%;
+    margin-left: 14.2%;
+    width:0;
 }
 .calendar .calendar--days .empty-2 {
-    width: 28.4%;
+    margin-left: 28.4%;
+    width:0;
 }
 .calendar .calendar--days .empty-3 {
-    width: 42.6%;
+    margin-left: 42.6%;
+    width:0;
 }
 .calendar .calendar--days .empty-4 {
-    width: 56.8%;
+    margin-left: 56.8%;
+    width:0;
 }
 .calendar .calendar--days .empty-5 {
-    width: 71%;
+    margin-left: 71%;
+    width:0;
 }
 .calendar .calendar--days .empty-6 {
-    width: 85.2%;
+    margin-left: 85.2%;
+    width:0;
 }
