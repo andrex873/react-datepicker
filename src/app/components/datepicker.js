@@ -44,7 +44,7 @@ class Datepicker extends React.Component {
 
     getContainerProps () {
         return {
-            className: 'datepicker-container'
+            className: 'datepicker'
         };
     }
 
@@ -84,8 +84,9 @@ class Datepicker extends React.Component {
         });
     }
 
-    handleOnInputChange = () => {
+    handleOnInputChange = (event) => {
         // TODO update the input field
+        console.log(event.target.value)
     }
 }
 

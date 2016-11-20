@@ -1,0 +1,60 @@
+$emptyMargin: 100/7 * 1%;
+
+.datepicker {
+
+    & .calendar {
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.7);
+        -moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.7);
+        box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.7);
+        color: #fff;
+        width: 300px;
+
+        &--year {
+            background-color: #006064;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        &--month {
+            background-color: #006064;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        &--day-name {
+            background-color: #006064;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        &--day {
+            cursor: pointer;
+            display: inline-block;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            width: 14.2%;
+        }
+
+        &--days {
+            color: #000;
+            padding: 0 10px 10px;
+
+            & .empty {
+                &-1 {width: 0; margin-left: $emptyMargin * 1;}
+                &-2 {width: 0; margin-left: $emptyMargin * 2;}
+                &-3 {width: 0; margin-left: $emptyMargin * 3;}
+                &-4 {width: 0; margin-left: $emptyMargin * 4;}
+                &-5 {width: 0; margin-left: $emptyMargin * 5;}
+                &-6 {width: 0; margin-left: $emptyMargin * 6;}
+
+            }
+        }
+    }
+}
