@@ -33,21 +33,20 @@ class Calendar extends React.Component {
                     {date.format('YYYY')}
                 </div>
                 <div className="calendar--month">
-                    <span>
-                        <button onClick={this.setPrevMonth}>prev</button>
-                    </span>
-                    <span className="calendar--month-text">
+                    <div className="calendar--month-action">
+                        <button onClick={this.setPrevMonth}>&lt;</button>
+                    </div>
+                    <div className="calendar--month-text">
                         {date.format('MMMM')}
-                    </span>
-                    <span>
-                        <button onClick={this.setNextMonth}>next</button>
-                    </span>
-                </div>
-                <div className="calendar--day-name">
-                    {date.format('dddd, DD')}
+                    </div>
+                    <div className="calendar--month-action">
+                        <button onClick={this.setNextMonth}>&gt;</button>
+                    </div>
                 </div>
                 <div className="calendar--days">
-                    {month.getDaysShortName().map(this.renderDaysNames)}
+                    <div className="calendar--days-name">
+                        {month.getDaysShortName().map(this.renderDaysNames)}
+                    </div>
                     {this.renderEmptySpace()}
                     {month.getDays().map(this.renderMonthDays)}
                 </div>
