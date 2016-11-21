@@ -4,27 +4,20 @@ import React from 'react';
 class Calendar extends React.Component {
 
     static propTypes = {
-        date: React.PropTypes.object.isRequired,
-        onDateSelected: React.PropTypes.func.isRequired,
-        onNextMonth: React.PropTypes.func.isRequired,
-        onPreviousMonth: React.PropTypes.func.isRequired
+        inputDate: React.PropTypes.object.isRequired,
+        onDateSelected: React.PropTypes.func.isRequired
     }
 
     static defaultProps = {
     }
 
     state = {
-        month: new Month(this.props.date.month(), this.props.date.year())
-    }
-
-    componentWillReceiveProps (newProps) {
-        this.setState({
-            month: new Month(newProps.date.month(), newProps.date.year())
-        });
+        date: this.props.inputDate,
+        month: new Month(this.props.inputDate.month(), this.props.inputDate.year())
     }
 
     render () {
-        let date = this.props.date;
+        let date = this.state.date;
         let month = this.state.month;
 
         return (
@@ -81,13 +74,21 @@ class Calendar extends React.Component {
     }
 
     setPrevMonth = () => {
-        let prevMonth= this.state.month.prevMonth();
-        this.props.onPreviousMonth(prevMonth);
+        let prevDate = this.state.month.prevMonth();
+
+        this.setState({
+            date: prevDate,
+            month: new Month(prevDate.month(), prevDate.year())
+        });
     }
 
     setNextMonth = () => {
-        let nextMonth = this.state.month.nextMonth();
-        this.props.onNextMonth(nextMonth);
+        let nextDate = this.state.month.nextMonth();
+
+        this.setState({
+            date: nextDate,
+            month: new Month(nextDate.month(), nextDate.year())
+        });
     }
 
 }

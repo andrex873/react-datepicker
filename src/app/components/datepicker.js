@@ -18,7 +18,6 @@ class Datepicker extends React.Component {
     }
 
     state = {
-        calendarDate: this.getCalendarDate(),
         inputDate: this.getInputDate()
     }
 
@@ -34,11 +33,6 @@ class Datepicker extends React.Component {
 
     getInputDate () {
         // TODO validate this string value
-        return moment(this.props.value, "DD/MM/YYYY");
-    }
-
-    getCalendarDate () {
-        // TODO if inputDate is valid then return it otherwise return the current date
         return moment(this.props.value, "DD/MM/YYYY");
     }
 
@@ -58,29 +52,14 @@ class Datepicker extends React.Component {
 
     getCalendarProps () {
         return {
-            date: this.state.calendarDate,
-            onDateSelected: this.handleOnDateSelected,
-            onNextMonth: this.handleOnNextMonth,
-            onPreviousMonth: this.handleOnPreviousMonth
+            inputDate: this.state.inputDate,
+            onDateSelected: this.handleOnDateSelected
         };
     }
 
     handleOnDateSelected = (date) => {
         this.setState({
-            calendarDate: date,
             inputDate: date
-        });
-    }
-
-    handleOnNextMonth = (date) => {
-        this.setState({
-            calendarDate: date
-        });
-    }
-
-    handleOnPreviousMonth = (date) => {
-        this.setState({
-            calendarDate: date
         });
     }
 
