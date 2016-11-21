@@ -1,4 +1,3 @@
-import config from './config';
 import Month from './month';
 import React from 'react';
 
@@ -25,29 +24,32 @@ class Calendar extends React.Component {
     }
 
     render () {
+        let date = this.props.date;
+        let month = this.state.month;
+
         return (
             <div className="calendar">
                 <div className="calendar--year">
-                    {this.props.date.format('YYYY')}
+                    {date.format('YYYY')}
                 </div>
                 <div className="calendar--month">
                     <span>
                         <button onClick={this.setPrevMonth}>prev</button>
                     </span>
                     <span className="calendar--month-text">
-                        {this.props.date.format('MMMM')}
+                        {date.format('MMMM')}
                     </span>
                     <span>
                         <button onClick={this.setNextMonth}>next</button>
                     </span>
                 </div>
                 <div className="calendar--day-name">
-                    {this.props.date.format('dddd, DD')}
+                    {date.format('dddd, DD')}
                 </div>
                 <div className="calendar--days">
-                    {config.DAYS_OF_WEECK.map(this.renderDaysNames)}
+                    {month.getDaysShortName().map(this.renderDaysNames)}
                     {this.renderEmptySpace()}
-                    {this.state.month.getDays().map(this.renderMonthDays)}
+                    {month.getDays().map(this.renderMonthDays)}
                 </div>
             </div>
         );
