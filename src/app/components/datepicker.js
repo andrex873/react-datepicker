@@ -10,15 +10,16 @@ class Datepicker extends React.Component {
     }
 
     static propTypes = {
-        value: React.PropTypes.string
+        selected: React.PropTypes.string
     }
 
     static defaultProps = {
-        value: '1/11/2016'
+        selected: '21/11/2016'
     }
 
     state = {
-        inputDate: this.getInputDate()
+        value: this.props.selected,
+        inputDate: this.getInputDate(this.props.selected)
     }
 
     render () {
@@ -31,9 +32,14 @@ class Datepicker extends React.Component {
         );
     }
 
-    getInputDate () {
-        // TODO validate this string value
-        return moment(this.props.value, "DD/MM/YYYY");
+    getInputDate (stringDate) {
+        let parsedDate = moment(stringDate, 'DD/MM/YYYY');
+
+        if (!(parsedDate.isValid() && parsedDate.year() > 1899)) {
+            parsedDate = moment();
+        }
+
+        return parsedDate;
     }
 
     getContainerProps () {
@@ -46,7 +52,7 @@ class Datepicker extends React.Component {
         return {
             name: 'datepicker',
             onChange: this.handleOnInputChange,
-            value: this.state.inputDate.format('DD/MM/YYYY')
+            value: this.state.value
         };
     }
 
@@ -59,13 +65,18 @@ class Datepicker extends React.Component {
 
     handleOnDateSelected = (date) => {
         this.setState({
-            inputDate: date
+            inputDate: date,
+            value: date.format('DD/MM/YYYY')
         });
     }
 
     handleOnInputChange = (event) => {
-        // TODO update the input field
-        console.log(event.target.value)
+        let newDate = this.getInputDate(event.target.value);
+
+        this.setState({
+            inputDate: newDate,
+            value: event.target.value
+        });
     }
 }
 

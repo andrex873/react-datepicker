@@ -8,6 +8,9 @@ export default class Month {
         this.endDate = this.startDate.clone().endOf('month');
     }
 
+    getDate () {
+        return this.startDate;
+    }
     getDaysShortName () {
         // TODO generate these names with moment
         return ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];

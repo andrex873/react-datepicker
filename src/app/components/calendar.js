@@ -16,9 +16,18 @@ class Calendar extends React.Component {
         month: new Month(this.props.inputDate.month(), this.props.inputDate.year())
     }
 
+    componentWillReceiveProps (nextProps) {
+        let inputDate = nextProps.inputDate;
+
+        this.setState({
+            date: inputDate,
+            month: new Month(inputDate.month(), inputDate.year())
+        });
+    }
+
     render () {
-        let date = this.state.date;
         let month = this.state.month;
+        let date = month.getDate();
 
         return (
             <div className="calendar">
@@ -37,7 +46,7 @@ class Calendar extends React.Component {
                     </div>
                 </div>
                 <div className="calendar--days">
-                    <div className="calendar--days-name">
+                    <div className="calendar--days-title">
                         {month.getDaysShortName().map(this.renderDaysNames)}
                     </div>
                     {this.renderEmptySpace()}
@@ -68,16 +77,23 @@ class Calendar extends React.Component {
     renderMonthDays = (date, index) => {
         return (
             <div key={index} className="calendar--day" onClick={() => this.props.onDateSelected(date)}>
-                {date.format('DD')}
+                <div {...this.getMonthDaysValueClass(date)}>{date.format('DD')}</div>
             </div>
         );
+    }
+
+    getMonthDaysValueClass = (date) => {
+        let active = (date.isSame(this.state.date, 'day')) ? 'active' : '';
+
+        return {
+            className: 'calendar--day-value ' + active
+        };
     }
 
     setPrevMonth = () => {
         let prevDate = this.state.month.prevMonth();
 
         this.setState({
-            date: prevDate,
             month: new Month(prevDate.month(), prevDate.year())
         });
     }
@@ -86,11 +102,9 @@ class Calendar extends React.Component {
         let nextDate = this.state.month.nextMonth();
 
         this.setState({
-            date: nextDate,
             month: new Month(nextDate.month(), nextDate.year())
         });
     }
-
 }
 
 module.exports = Calendar;

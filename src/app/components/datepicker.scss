@@ -38,11 +38,10 @@ $headerColor: #43A047;
                 & button {
                     background: 0;
                     border: 0;
-                    color: black;
+                    color: #2E7D32;
                     font-size: inherit;
                     font-weight: bold;
                     cursor: pointer;
-                    opacity: 0.4;
                 }
             }
 
@@ -57,28 +56,32 @@ $headerColor: #43A047;
             }
         }
 
-        &--day-name {
-            background-color: $headerColor;
-            font-size: 28px;
-            font-weight: bold;
-            padding: 15px 0;
-            text-align: center;
-        }
-
         &--day {
-            cursor: pointer;
             display: inline-block;
             height: 25px;
             line-height: 25px;
             text-align: center;
             width: 14.2%;
+
+            &-value {
+                cursor: pointer;
+                margin: 0 auto;
+                width: 25px;
+
+                &:hover {
+                    background-color: $headerColor;
+                    border-radius: 50%;
+                    color: #FFF;
+                    font-weight: bold;
+                }
+            }
         }
 
         &--days {
             color: #212121;
             padding: 0 10px 10px;
 
-            &-name {
+            &-title {
                 border-bottom: 2px solid #BDBDBD;
                 font-weight: bold;
                 margin: 5px 0;
@@ -92,6 +95,13 @@ $headerColor: #43A047;
                 &-5 {width: 0; margin-left: $emptyMargin * 5;}
                 &-6 {width: 0; margin-left: $emptyMargin * 6;}
 
+            }
+
+            & .active {
+                background-color: $headerColor;
+                border-radius: 50%;
+                color: #FFF;
+                font-weight: bold;
             }
         }
     }
