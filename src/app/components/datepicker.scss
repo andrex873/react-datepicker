@@ -1,12 +1,7 @@
 $emptyMargin: 100/7 * 1%;
 $headerColor: #43A047;
 
-* {
-    box-sizing: border-box;
-}
-
 .datepicker {
-    font-family: 'Roboto', sans-serif;
 
     & .calendar {
         -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.7);

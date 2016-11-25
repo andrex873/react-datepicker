@@ -5,7 +5,7 @@ import React from 'react';
 class Datepicker extends React.Component {
 
     constructor (props) {
-        moment.locale('es');
+        moment.locale(props.locale || 'es');
         super(props);
     }
 
@@ -14,7 +14,7 @@ class Datepicker extends React.Component {
     }
 
     static defaultProps = {
-        selected: '21/11/2016'
+        selected: ''
     }
 
     state = {
