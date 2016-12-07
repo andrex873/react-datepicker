@@ -6,6 +6,6 @@ import Datepicker from './components/datepicker.js';
 import './components/datepicker.scss';
 
 ReactDOM.render(
-    <Datepicker />,
+    <Datepicker className="date-test"/>,
     document.getElementById('app')
 );

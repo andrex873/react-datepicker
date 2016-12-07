@@ -10,10 +10,15 @@ class Datepicker extends React.Component {
     }
 
     static propTypes = {
+        className: React.PropTypes.string,
+        format: React.PropTypes.string,
+        name: React.PropTypes.string.isRequired,
         selected: React.PropTypes.string
     }
 
     static defaultProps = {
+        className: '',
+        format: 'DD/MM/YYYY',
         selected: ''
     }
 
@@ -24,7 +29,7 @@ class Datepicker extends React.Component {
 
     render () {
         return (
-            <div {...this.getContainerProps()}>
+            <div className="datepicker-component">
                 <input {...this.getInputProps()}/>
                 <Calendar {...this.getCalendarProps()}/>
             </div>
@@ -33,7 +38,7 @@ class Datepicker extends React.Component {
     }
 
     getInputDate (stringDate) {
-        let parsedDate = moment(stringDate, 'DD/MM/YYYY');
+        let parsedDate = moment(stringDate, this.props.format);
 
         if (!(parsedDate.isValid() && parsedDate.year() > 1899)) {
             parsedDate = moment();
@@ -42,15 +47,12 @@ class Datepicker extends React.Component {
         return parsedDate;
     }
 
-    getContainerProps () {
-        return {
-            className: 'datepicker'
-        };
-    }
-
     getInputProps () {
+        var props = this.props;
         return {
-            name: 'datepicker',
+            className: props.className,
+            id: props.name,
+            name: props.name,
             onChange: this.handleOnInputChange,
             value: this.state.value
         };
@@ -66,7 +68,7 @@ class Datepicker extends React.Component {
     handleOnDateSelected = (date) => {
         this.setState({
             inputDate: date,
-            value: date.format('DD/MM/YYYY')
+            value: date.format(this.props.format)
         });
     }
 

@@ -1,7 +1,7 @@
 $emptyMargin: 100/7 * 1%;
 $headerColor: #43A047;
 
-.datepicker {
+.datepicker-component {
 
     & .calendar {
         -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.7);
@@ -55,6 +55,7 @@ $headerColor: #43A047;
             display: inline-block;
             height: 25px;
             line-height: 25px;
+            padding: 4px 0;
             text-align: center;
             width: 14.2%;
 
