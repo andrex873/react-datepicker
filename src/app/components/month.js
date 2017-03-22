@@ -11,6 +11,7 @@ export default class Month {
     getDate () {
         return this.startDate;
     }
+
     getDaysShortName () {
         // TODO generate these names with moment
         return ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];

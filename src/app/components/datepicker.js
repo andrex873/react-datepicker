@@ -48,7 +48,8 @@ class Datepicker extends React.Component {
     }
 
     getInputProps () {
-        var props = this.props;
+        let props = this.props;
+
         return {
             className: props.className,
             id: props.name,
